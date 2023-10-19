@@ -1,0 +1,22 @@
+[
+  {
+    "name": "John",
+    "clan": "Cook",
+    "email": "john@cook.io"
+  },
+  {
+    "name": "James",
+    "clan": "Potter",
+    "email": "james@potter.uk"
+  },
+  {
+    "name": "Ginny",
+    "clan": "Potter",
+    "email": "ginny@potter.uk"
+  },
+  {
+    "name": "Jaina",
+    "clan": "Proudmore",
+    "email": "jaina@proudmore.com"
+  }
+]
