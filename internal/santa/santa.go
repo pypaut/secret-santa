@@ -24,3 +24,12 @@ func LoadSantas(configFile string) (santas []*Santa, err error) {
 
 	return
 }
+
+func SelectSantas(inSantas []*Santa, nbSantas int) (map[string][]string, error) {
+	outSantas := make(map[string][]string)
+	for _, s := range inSantas {
+		outSantas[s.Name] = make([]string, nbSantas, nbSantas)
+	}
+
+	return outSantas, nil
+}

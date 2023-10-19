@@ -24,6 +24,7 @@ in the same household. Usage example:
 
 ./secret-santa --nb_santas 2 --file santas.json`,
 	Run: func(cmd *cobra.Command, args []string) {
+		// Load santas
 		santas, err := santa.LoadSantas(configFile)
 		if err != nil {
 			panic(err)
@@ -32,6 +33,10 @@ in the same household. Usage example:
 		for _, s := range santas {
 			fmt.Printf("%v\n", s)
 		}
+
+		// Select people for each santa
+
+		// Send mail to each santa with their people to gift
 	},
 }
 
