@@ -30,13 +30,20 @@ in the same household. Usage example:
 			panic(err)
 		}
 
-		for _, s := range santas {
-			fmt.Printf("%v\n", s)
+		if len(santas) < nbSantas {
+			fmt.Fprint(os.Stderr, "Number of gifted should not be above number of santas")
 		}
 
-		// Select people for each santa
+		receivers, err := santa.SelectSantas(santas, nbSantas)
+		if err != nil {
+			panic(err)
+		}
 
-		// Send mail to each santa with their people to gift
+		for santa, r := range receivers {
+			fmt.Printf("%s: %v\n", santa, r)
+		}
+
+		// TODO : Send mail to each santa with their people to gift
 	},
 }
 
