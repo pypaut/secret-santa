@@ -25,11 +25,11 @@ func LoadSantas(configFile string) (santas []*Santa, err error) {
 	return
 }
 
-func SelectSantas(inSantas []*Santa, nbSantas int) (map[string][]string, error) {
+func SelectGifted(inSantas []*Santa, nbGifted int) (map[string][]string, error) {
 	outSantas := make(map[string][]string)
 	for iGifter, s := range inSantas {
-		outSantas[s.Name] = make([]string, nbSantas, nbSantas)
-		for iGifted := 0; iGifted < nbSantas; iGifted++ {
+		outSantas[s.Name] = make([]string, nbGifted, nbGifted)
+		for iGifted := 0; iGifted < nbGifted; iGifted++ {
 			nextGifterIndex := (iGifter + 1) % len(inSantas)
 			outSantas[s.Name][iGifted] = inSantas[nextGifterIndex].Name
 		}

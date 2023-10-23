@@ -2,16 +2,16 @@ package santa
 
 import "testing"
 
-func TestSelectSantasMapLen(t *testing.T) {
+func TestSelectGiftedMapLen(t *testing.T) {
 	inSantas, err := LoadSantas("../../santas-sample.json")
 	if err != nil {
 		t.Log("error: could not load config file")
 		t.Fail()
 	}
 
-	outSantas, err := SelectSantas(inSantas, 1)
+	outSantas, err := SelectGifted(inSantas, 1)
 	if err != nil {
-		t.Log("error during SelectSantas")
+		t.Log("error during SelectGifted")
 		t.Fail()
 	}
 
@@ -21,16 +21,16 @@ func TestSelectSantasMapLen(t *testing.T) {
 	}
 }
 
-func TestSelectSantasElementsLen(t *testing.T) {
+func TestSelectGiftedElementsLen(t *testing.T) {
 	inSantas, err := LoadSantas("../../santas-sample.json")
 	if err != nil {
 		t.Log("error: could not load config file")
 		t.Fail()
 	}
 
-	outSantas, err := SelectSantas(inSantas, 1)
+	outSantas, err := SelectGifted(inSantas, 1)
 	if err != nil {
-		t.Log("error during SelectSantas")
+		t.Log("error during SelectGifted")
 		t.Fail()
 	}
 
@@ -43,16 +43,16 @@ func TestSelectSantasElementsLen(t *testing.T) {
 	}
 }
 
-func TestSelectSantasReceiversHaveSantasNames(t *testing.T) {
+func TestSelectGiftedReceiversHaveSantasNames(t *testing.T) {
 	inSantas, err := LoadSantas("../../santas-sample.json")
 	if err != nil {
 		t.Log("error: could not load config file")
 		t.Fail()
 	}
 
-	outSantas, err := SelectSantas(inSantas, 2)
+	outSantas, err := SelectGifted(inSantas, 2)
 	if err != nil {
-		t.Log("error during SelectSantas")
+		t.Log("error during SelectGifted")
 		t.Fail()
 	}
 
@@ -75,16 +75,16 @@ func TestSelectSantasReceiversHaveSantasNames(t *testing.T) {
 	}
 }
 
-func TestSelectSantasDontGiveToYourself(t *testing.T) {
+func TestSelectGiftedDontGiveToYourself(t *testing.T) {
 	inSantas, err := LoadSantas("../../santas-sample.json")
 	if err != nil {
 		t.Log("error: could not load config file")
 		t.Fail()
 	}
 
-	outSantas, err := SelectSantas(inSantas, 2)
+	outSantas, err := SelectGifted(inSantas, 2)
 	if err != nil {
-		t.Log("error during SelectSantas")
+		t.Log("error during SelectGifted")
 		t.Fail()
 	}
 

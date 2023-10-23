@@ -11,7 +11,7 @@ import (
 
 var (
 	configFile string
-	nbSantas   int
+	nbGifted   int
 )
 
 // rootCmd represents the base command when called without any subcommands
@@ -30,11 +30,11 @@ in the same household. Usage example:
 			panic(err)
 		}
 
-		if len(santas) < nbSantas {
+		if len(santas) < nbGifted {
 			fmt.Fprint(os.Stderr, "Number of gifted should not be above number of santas")
 		}
 
-		receivers, err := santa.SelectSantas(santas, nbSantas)
+		receivers, err := santa.SelectGifted(santas, nbGifted)
 		if err != nil {
 			panic(err)
 		}
@@ -55,6 +55,6 @@ func Execute() {
 }
 
 func init() {
-	rootCmd.Flags().IntVar(&nbSantas, "nb_santas", 1, "Number of santas to attribute each santa")
+	rootCmd.Flags().IntVar(&nbGifted, "nb_gifted", 1, "Number of santas to attribute each santa")
 	rootCmd.Flags().StringVar(&configFile, "config", "santas.json", "File containing the list of santas (default: santas.json)")
 }
