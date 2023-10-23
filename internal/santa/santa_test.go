@@ -121,4 +121,75 @@ func TestSelectGiftedShouldHaveDifferentGifted(t *testing.T) {
 	}
 }
 
-// TODO : gifter and gifted should be from different clans
+func TestSelectGiftedShouldBeOfDifferentClans(t *testing.T) {
+	inSantas, err := LoadSantas("../../santas-sample.json")
+	if err != nil {
+		t.Log("error: could not load config file")
+		t.Fail()
+	}
+
+	outSantas, err := SelectGifted(inSantas, 3)
+	if err != nil {
+		t.Log("error during SelectGifted")
+		t.Fail()
+	}
+
+	for gifterName, gifted := range outSantas {
+		for _, giftedName := range gifted {
+			gifterClan, err := GetClan(gifterName, inSantas)
+			if err != nil {
+				t.Logf("error during GetClan(%s): %v", gifterName, err)
+				t.Fail()
+			}
+
+			giftedClan, err := GetClan(giftedName, inSantas)
+			if err != nil {
+				t.Logf("error during GetClan(%s): %v", giftedName, err)
+				t.Fail()
+			}
+
+			if gifterClan == giftedClan {
+				t.Logf(
+					"error: %s and %s are from clan %s: (%s -> %v)\n",
+					gifterName,
+					giftedName,
+					gifterClan,
+					gifterName,
+					gifted,
+				)
+				t.Fail()
+				return
+			}
+		}
+	}
+}
+
+func TestGetClan(t *testing.T) {
+	inSantas, err := LoadSantas("../../santas-sample.json")
+	if err != nil {
+		t.Log("error: could not load config file")
+		t.Fail()
+	}
+
+	clan, err := GetClan("John", inSantas)
+	if err != nil {
+		t.Logf("error during GetClan: %v", err)
+		t.Fail()
+	}
+
+	if clan != "Cook" {
+		t.Logf("Clan should be %s but is %s\n", "Cook", clan)
+		t.Fail()
+	}
+
+	clan, err = GetClan("James", inSantas)
+	if err != nil {
+		t.Logf("error during GetClan: %v", err)
+		t.Fail()
+	}
+
+	if clan != "Potter" {
+		t.Logf("Clan should be %s but is %s\n", "Cook", clan)
+		t.Fail()
+	}
+}

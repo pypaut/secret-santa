@@ -2,6 +2,8 @@ package santa
 
 import (
 	"encoding/json"
+	"errors"
+	"fmt"
 	"os"
 )
 
@@ -36,4 +38,14 @@ func SelectGifted(inSantas []*Santa, nbGifted int) (map[string][]string, error) 
 	}
 
 	return outSantas, nil
+}
+
+func GetClan(santaName string, santas []*Santa) (clan string, err error) {
+	for _, s := range santas {
+		if s.Name == santaName {
+			return s.Clan, nil
+		}
+	}
+
+	return "", errors.New(fmt.Sprintf("could not find %s in santas", santaName))
 }
