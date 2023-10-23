@@ -30,7 +30,7 @@ func SelectGifted(inSantas []*Santa, nbGifted int) (map[string][]string, error) 
 	for iGifter, s := range inSantas {
 		outSantas[s.Name] = make([]string, nbGifted, nbGifted)
 		for iGifted := 0; iGifted < nbGifted; iGifted++ {
-			nextGifterIndex := (iGifter + 1) % len(inSantas)
+			nextGifterIndex := (iGifter + iGifted + 1) % len(inSantas)
 			outSantas[s.Name][iGifted] = inSantas[nextGifterIndex].Name
 		}
 	}

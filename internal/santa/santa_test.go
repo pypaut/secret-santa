@@ -99,5 +99,26 @@ func TestSelectGiftedDontGiveToYourself(t *testing.T) {
 	}
 }
 
-// TODO : should have different gifted
+func TestSelectGiftedShouldHaveDifferentGifted(t *testing.T) {
+	inSantas, err := LoadSantas("../../santas-sample.json")
+	if err != nil {
+		t.Log("error: could not load config file")
+		t.Fail()
+	}
+
+	outSantas, err := SelectGifted(inSantas, 3)
+	if err != nil {
+		t.Log("error during SelectGifted")
+		t.Fail()
+	}
+
+	for gifter, gifted := range outSantas {
+		if gifted[0] == gifted[1] || gifted[1] == gifted[2] || gifted[0] == gifted[2] {
+			t.Logf("error: several times the same gifted: %s -> %v\n", gifter, gifted)
+			t.Fail()
+			return
+		}
+	}
+}
+
 // TODO : gifter and gifted should be from different clans
