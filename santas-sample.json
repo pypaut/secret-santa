@@ -18,5 +18,15 @@
     "name": "Jaina",
     "clan": "Proudmore",
     "email": "jaina@proudmore.com"
+  },
+  {
+    "name": "Walther",
+    "clan": "Heiseinberg",
+    "email": "walther@white.us"
+  },
+  {
+    "name": "Megumi",
+    "clan": "Fushiguro",
+    "email": "megumi@fushiguro.jp"
   }
 ]

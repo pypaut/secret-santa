@@ -193,3 +193,40 @@ func TestGetClan(t *testing.T) {
 		t.Fail()
 	}
 }
+
+func TestGetSantasNotInClan(t *testing.T) {
+	inSantas, err := LoadSantas("../../santas-sample.json")
+	if err != nil {
+		t.Log("error: could not load config file")
+		t.Fail()
+	}
+
+	clan := "Cook"
+	otherSantas := GetSantasNotInClan(clan, inSantas)
+
+	if len(otherSantas) != 5 {
+		t.Logf("error: expected len to be 5, but was %d", len(otherSantas))
+		t.Fail()
+	}
+
+	for _, s := range otherSantas {
+		if s.Clan == clan {
+			t.Logf("error: clan should not be %s", clan)
+			t.Fail()
+		}
+	}
+}
+
+func TestBiggestClanLen(t *testing.T) {
+	inSantas, err := LoadSantas("../../santas-sample.json")
+	if err != nil {
+		t.Log("error: could not load config file")
+		t.Fail()
+	}
+
+	maxLen := BiggestClanLen(inSantas)
+	if maxLen != 2 {
+		t.Logf("error: expected 2, got %d", maxLen)
+		t.Fail()
+	}
+}

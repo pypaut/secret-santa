@@ -31,7 +31,18 @@ in the same household. Usage example:
 		}
 
 		if len(santas) < nbGifted {
-			fmt.Fprint(os.Stderr, "Number of gifted should not be above number of santas")
+			fmt.Fprint(os.Stderr, "number of gifted should not be above number of santas")
+			return
+		}
+
+		maxLen := santa.BiggestClanLen(santas)
+		if len(santas)-maxLen < nbGifted {
+			fmt.Fprint(os.Stderr, "cannot apply nb_gifted: too many santas from the same clan")
+			return
+		}
+
+		for _, s := range santas {
+			fmt.Printf("%v\n", s)
 		}
 
 		receivers, err := santa.SelectGifted(santas, nbGifted)
