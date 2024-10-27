@@ -11,50 +11,23 @@ import (
 
 var (
 	configFile string
-	nbGifted   int
+	nbGifts    int
 )
 
-// rootCmd represents the base command when called without any subcommands
 var rootCmd = &cobra.Command{
 	Use:   "secret-santa",
 	Short: "Find out your santas for this year!",
 	Long: `Fill a santas.json file with all the santas. "Clan" means the
-household: it is relevant in case you don't want to link santas that live
-in the same household. Usage example:
+  household: it is relevant in case you don't want to link santas that live
+  in the same household. Usage example:
 
-./secret-santa --nb_santas 2 --file santas.json`,
+  ./secret-santa --nb_gifts 2 --file santas.json`,
 	Run: func(cmd *cobra.Command, args []string) {
-		// Load santas
-		santas, err := santa.LoadSantas(configFile)
-		if err != nil {
-			panic(err)
-		}
+    persons := santa.SecretSanta(configFile, nbGifts)
 
-		if len(santas) < nbGifted {
-			fmt.Fprint(os.Stderr, "number of gifted should not be above number of santas")
-			return
+		for _, p := range persons {
+			fmt.Printf("%v\n", p)
 		}
-
-		maxLen := santa.BiggestClanLen(santas)
-		if len(santas)-maxLen < nbGifted {
-			fmt.Fprint(os.Stderr, "cannot apply nb_gifted: too many santas from the same clan")
-			return
-		}
-
-		for _, s := range santas {
-			fmt.Printf("%v\n", s)
-		}
-
-		receivers, err := santa.SelectGifted(santas, nbGifted)
-		if err != nil {
-			panic(err)
-		}
-
-		for santa, r := range receivers {
-			fmt.Printf("%s: %v\n", santa, r)
-		}
-
-		// TODO : Send mail to each santa with their people to gift
 	},
 }
 
@@ -66,6 +39,6 @@ func Execute() {
 }
 
 func init() {
-	rootCmd.Flags().IntVar(&nbGifted, "nb_gifted", 1, "Number of santas to attribute each santa")
-	rootCmd.Flags().StringVar(&configFile, "config", "santas.json", "File containing the list of santas (default: santas.json)")
+	rootCmd.Flags().IntVar(&nbGifts, "nb_gifts", 2, "How many persons should receive gifts from a single person (default: 2)")
+	rootCmd.Flags().StringVar(&configFile, "config", "santas-sample.json", "File containing the list of santas (default: santas.json)")
 }

@@ -1,6 +1,10 @@
 github.com/cpuguy83/go-md2man/v2 v2.0.2/go.mod h1:tgQtvFlXSQOSOSIRvRPT7W67SCa46tRHOmNcaadrF8o=
 github.com/inconshreveable/mousetrap v1.1.0 h1:wN+x4NVGpMsO7ErUn/mUI3vEoE6Jt13X2s0bqwp9tc8=
 github.com/inconshreveable/mousetrap v1.1.0/go.mod h1:vpF70FUmC8bwa3OWnCshd2FqLfsEA9PFc4w1p2J65bw=
+github.com/pypaut/slices v0.1.0 h1:/8hB5YIumaXIC4iC9Fpw+MHqOoGnlTcZQOc1di989qo=
+github.com/pypaut/slices v0.1.0/go.mod h1:IXsFQ1O6x593zQPJFO3+pDMA9hJQzlHIXFTP0XvGdus=
+github.com/pypaut/slices v0.2.0 h1:xiRNKSIdylXrLG9XJ/rUZ4hwvmZ42nr7DPwP4pRT1YM=
+github.com/pypaut/slices v0.2.0/go.mod h1:IXsFQ1O6x593zQPJFO3+pDMA9hJQzlHIXFTP0XvGdus=
 github.com/russross/blackfriday/v2 v2.1.0/go.mod h1:+Rmxgy9KzJVeS9/2gXHxylqXiyQDYRxCVz55jmeOWTM=
 github.com/spf13/cobra v1.7.0 h1:hyqWnYt1ZQShIddO5kBpj3vu05/++x6tJ6dg8EC572I=
 github.com/spf13/cobra v1.7.0/go.mod h1:uLxZILRyS/50WlhOIKD7W6V5bgeIt+4sICxh6uRMrb0=
