@@ -3,6 +3,7 @@ package cmd
 import (
 	"os"
 
+	"github.com/pypaut/secret-santa/internal/mail"
 	"github.com/pypaut/secret-santa/internal/santa"
 	"github.com/spf13/cobra"
 
@@ -23,10 +24,22 @@ var rootCmd = &cobra.Command{
 
   ./secret-santa --nb_gifts 2 --file santas.json`,
 	Run: func(cmd *cobra.Command, args []string) {
-    persons := santa.SecretSanta(configFile, nbGifts)
+		persons := santa.SecretSanta(configFile, nbGifts)
 
 		for _, p := range persons {
 			fmt.Printf("%v\n", p)
+		}
+
+		mailConfig, err := mail.LoadConfig("mail-conf.json")
+		if err != nil {
+			fmt.Print("error while loading mail config\b")
+			panic(err)
+		}
+
+		err = mail.SendMails(mailConfig, persons)
+		if err != nil {
+			fmt.Print("error while sending mail\n")
+			panic(err)
 		}
 	},
 }
