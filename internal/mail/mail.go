@@ -55,7 +55,7 @@ func SendMails(config *Config, persons []*santa.Person) error {
 		m.SetHeader("To", person.Email)
 		m.SetHeader("Subject", "Secret santa !")
 		strMessage := fmt.Sprintf("Bonjour %s, cette année tu seras le santa des personnes suivantes : ", person.Name)
-		names, err2 := myslices.Map[*santa.Person, string](
+		names, err2 := myslices.Map(
 			person.Gifted,
 			func(p *santa.Person) (string, error) { return p.Name, nil },
 		)
